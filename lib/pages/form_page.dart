@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_font_icons/flutter_font_icons.dart';
 import 'package:provider/provider.dart';
@@ -15,25 +16,36 @@ class FormPage extends StatelessWidget {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text("Provider Test : Form Page"),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          const Text("in this page you incremen or decrement the counter"),
-          Text("${context.watch<CounterProvider>().value}"),
-          FloatingActionButton(
-            child: const Icon(FontAwesome.plus),
-            onPressed: () {
-              context.read<CounterProvider>().increment();
-            },
-          ),
-          FloatingActionButton(
-            child: const Icon(FontAwesome.minus),
-            onPressed: () {
-              context.read<CounterProvider>().decrement();
-            },
-          )
-        ],
+      body: Container(
+        padding: const EdgeInsets .symmetric(horizontal: 10),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,crossAxisAlignment: CrossAxisAlignment.end,
+
+          children: [
+            const Text("in this page you increment or decrement the counter",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),),
+            Center(child: Text("${context.watch<CounterProvider>().value}",style: TextStyle(fontSize: 38,fontWeight: FontWeight.w500,color: Colors.deepPurple.shade300),)),
+
+            Column(
+
+              children: [
+                FloatingActionButton(
+                  child: const Icon(FontAwesome.plus),
+                  onPressed: () {
+                    context.read<CounterProvider>().increment();
+                  },
+                ),
+                const SizedBox(height: 20,),
+                FloatingActionButton(
+                  child: const Icon(FontAwesome.minus),
+                  onPressed: () {
+                    context.read<CounterProvider>().decrement();
+                  },
+                )
+              ],
+            ),
+
+          ],
+        ),
       ),
       bottomNavigationBar: Container(
         height: 80,
